@@ -40,7 +40,7 @@ section { padding: 8rem 4rem; position: relative; }
 .divider { height: 1px; background: var(--light); }
 
 /* HERO */
-#hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 4rem; gap: 4rem; }
+#hero { min-height: 66vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 4rem; gap: 4rem; }
 .hero-left { padding-top: 6rem; }
 .hero-eyebrow { font-size: .55rem; letter-spacing: .4em; text-transform: uppercase; color: var(--muted); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
 .hero-eyebrow::before { content: '01'; font-size: .5rem; color: var(--accent); }
@@ -193,6 +193,25 @@ section { padding: 8rem 4rem; position: relative; }
 .lang-level { font-size: .55rem; letter-spacing: .1em; color: rgba(247,244,239,.35); }
 .lang-badge { display: inline-block; margin-top: .5rem; font-size: .5rem; letter-spacing: .1em; text-transform: uppercase; padding: .2rem .5rem; border: 1px solid rgba(181,71,42,.4); color: var(--accent); }
 
+/* COLLABORATORS & PARTNERS — marquee inside hero */
+.hero-partners { width: 100%; border-top: 1px solid var(--light); padding: 2.5rem 0 3rem; overflow: hidden; }
+.hero-partners-label { font-size: .48rem; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); padding: 0 4rem; margin-bottom: 1.8rem; }
+.marquee-wrap { position: relative; width: 100%; overflow: hidden; }
+.marquee-wrap::before,
+.marquee-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 6rem; z-index: 2; pointer-events: none; }
+.marquee-wrap::before { left: 0;  background: linear-gradient(to right, var(--paper), transparent); }
+.marquee-wrap::after  { right: 0; background: linear-gradient(to left,  var(--paper), transparent); }
+.marquee-track { display: flex; align-items: center; gap: 0; width: max-content; animation: marqueeScroll 30s linear infinite; }
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+.marquee-item { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; padding: .8rem 2.5rem; border-right: 1px solid var(--light); flex-shrink: 0; cursor: default; transition: background .25s; min-width: 140px; }
+.marquee-item:hover { background: var(--warm); }
+.marquee-logo { height: 36px; width: auto; max-width: 110px; object-fit: contain; opacity: .35; filter: grayscale(1); transition: opacity .3s, filter .3s; }
+.marquee-item:hover .marquee-logo { opacity: .85; filter: grayscale(0); }
+.marquee-name { font-size: .44rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); text-align: center; white-space: nowrap; transition: color .3s; }
+.marquee-item:hover .marquee-name { color: var(--accent); }
+.marquee-placeholder { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: var(--light); text-align: center; line-height: 1.2; }
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 /* CONTACT */
 #contact { background: var(--paper); min-height: 60vh; display: flex; flex-direction: column; justify-content: center; }
 .contact-inner { max-width: 700px; }
@@ -280,8 +299,18 @@ Experienced in managing large-scale fan activations, music production pipelines,
       <div class="hsb-desc">Former Front-End Team Lead — structured delivery, stakeholder communication, Agile environments.</div>
     </div>
   </div>
-</section>
 
+   <!-- COLLABORATORS & PARTNERS MARQUEE -->
+  
+</section>
+<div class="hero-partners">
+    <div class="hero-partners-label">Collaborators &amp; Partners</div>
+    <div class="marquee-wrap">
+      <div class="marquee-track" id="marquee-track">
+        <!-- Items injected by JS — add your brands to PARTNER_LOGOS in the script -->
+      </div>
+    </div>
+  </div>
 <div class="divider"></div>
 
 <!-- ABOUT -->
@@ -456,7 +485,6 @@ Experienced in managing large-scale fan activations, music production pipelines,
         <span class="exp-tag">Tech Leadership · Agile · Enterprise Delivery</span>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -800,6 +828,76 @@ Object.keys(PHOTO_CONFIG).forEach(function(id) {
   if (counterEl) counterEl.innerHTML = '<span id="cur-' + id + '">1</span> / ' + realCount;
   el.dataset.total = realCount;
 });
+
+var PARTNER_LOGOS = [
+  { name: 'AKA Virtual',         logo: '/Logos/aka-virtual.png'       },
+  { name: 'Hololive Indonesia',  logo: '/Logos/hololive-id.png'       },
+  { name: 'ASUS',                logo: '/Logos/asus.png'              },
+  { name: 'Thymeline Cafe',      logo: '/Logos/thymeline.png'         },
+  { name: 'Comifuro',            logo: '/Logos/comifuro.png'          },
+  { name: 'Atlus',               logo: '/Logos/atlus.png'             },
+  { name: 'ZZZ',                 logo: '/Logos/zzz.png'               },
+  { name: 'Trakteer',            logo: '/Logos/Trakteer.png'          },
+  { name: 'NIKKE',               logo: '/Logos/nikke.png'             },
+  { name: 'Danone',              logo: '/Logos/danone.png'            },
+  { name: 'Alfamart',            logo: '/Logos/alfamart.png'          },
+  { name: 'LPS',                 logo: '/Logos/lps.png'               },
+  { name: 'PGI Data',            logo: '/Logos/pgi.png'               },
+  { name: '8Villages',           logo: '/Logos/8Villages.png'         },
+  { name: 'UOB',                 logo: '/Logos/uob.png'               },
+  { name: 'PT Astra International Tbk',    logo: '/Logos/astra.png'   },
+  // add more: { name: 'Brand Name', logo: '/Logos/brand.png' }
+];
+
+// Build marquee — duplicates the set so it scrolls seamlessly forever
+(function buildMarquee() {
+  var track = document.getElementById('marquee-track');
+  if (!track || !PARTNER_LOGOS.length) return;
+
+  function makeItem(partner) {
+    var item = document.createElement('div');
+    item.className = 'marquee-item';
+
+    if (partner.logo) {
+      var img = document.createElement('img');
+      img.className = 'marquee-logo';
+      img.alt = partner.name;
+      img.onerror = function() {
+        // If logo file missing, show styled name instead
+        this.style.display = 'none';
+        var ph = document.createElement('div');
+        ph.className = 'marquee-placeholder';
+        ph.textContent = partner.name;
+        item.insertBefore(ph, item.querySelector('.marquee-name'));
+      };
+      // Runtime src assign — bundler cannot detect this path
+      img.src = [partner.logo].join('');
+      item.appendChild(img);
+    } else {
+      var ph = document.createElement('div');
+      ph.className = 'marquee-placeholder';
+      ph.textContent = partner.name;
+      item.appendChild(ph);
+    }
+
+    var label = document.createElement('div');
+    label.className = 'marquee-name';
+    label.textContent = partner.name;
+    item.appendChild(label);
+    return item;
+  }
+
+  // Render twice for seamless infinite loop
+  [PARTNER_LOGOS, PARTNER_LOGOS].forEach(function(set) {
+    set.forEach(function(partner) {
+      track.appendChild(makeItem(partner));
+    });
+  });
+
+  // Adjust animation speed based on item count
+  var duration = Math.max(20, PARTNER_LOGOS.length * 4) + 's';
+  track.style.animationDuration = duration;
+})();
 
 // ── Slideshow controls ────────────────────────────────────────────────────────
 function getSlide(id) { return parseInt(document.getElementById(id).dataset.slide) || 0; }
