@@ -114,10 +114,11 @@ section { padding: 8rem 4rem; position: relative; }
 /* PROJECTS */
 #projects { background: var(--paper); }
 .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 4rem; }
-.proj-card { background: var(--warm); position: relative; overflow: hidden; display: flex; flex-direction: column; transition: background .4s; }
+.proj-card { background: var(--warm); padding: 3.5rem; position: relative; overflow: hidden; cursor: pointer; transition: background .4s; }
 .proj-card:hover { background: var(--ink); color: var(--paper); }
-.proj-card .ps-slideshow { aspect-ratio: 16/9; flex-shrink: 0; }
-.proj-card .ps-info { padding: 2.5rem; flex: 1; display: flex; flex-direction: column; }
+.proj-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+.proj-card.featured .proj-inner { padding: 3.5rem; }
+.proj-card.featured .proj-metric-panel { background: var(--accent); padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; }
 .proj-num { font-family: 'Cormorant Garamond', serif; font-size: 5rem; font-weight: 300; color: var(--light); line-height: 1; margin-bottom: 2rem; transition: color .3s; }
 .proj-card:hover .proj-num { color: rgba(247,244,239,.06); }
 .proj-tag { font-size: .52rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .8rem; transition: color .3s; }
@@ -473,104 +474,63 @@ Experienced in managing large-scale fan activations, music production pipelines,
   <p>Additional project case studies and event documentation are available upon request.</p>
   <div class="proj-grid">
 
-    <!-- PROJECT 01 -->
     <div class="proj-card reveal">
-      <div class="ps-slideshow" data-slide="0" id="ss-01">
-        <div class="ps-track">
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#2a1a14,#b5472a)"></div></div>
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#1a1014,#8a3020)"></div></div>
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#14101a,#6a2850)"></div></div>
+       <div class="ps-slideshow" data-slide="0" id="ss-01">
+          <div class="ps-track">
+            <div class="ps-slide">
+              <div class="ps-img-placeholder" style="background:linear-gradient(135deg,#2a1a14 0%,#b5472a 100%)">
+                <img class="ps-real-img" src="/Photos/SOL4CE/1.jpg" alt="SOL.4CE Café Pop Up Restaurant" onerror="this.style.display='none'">
+              </div>
+            </div>
+            <div class="ps-slide">
+              <div class="ps-img-placeholder" style="background:linear-gradient(135deg,#1a1014 0%,#8a3020 100%)">
+                <div class="ps-placeholder-label">SOL.4CE Café — Image 2</div>
+                <div class="ps-placeholder-hint">Replace src with your photo</div>
+                <img class="ps-real-img" src="/Photos/SOL4CE/2.jpg" alt="SOL.4CE Thematic Café" onerror="this.style.display='none'">
+              </div>
+            </div>
+            <div class="ps-slide">
+              <div class="ps-img-placeholder" style="background:linear-gradient(135deg,#14101a 0%,#6a2850 100%)">
+                <div class="ps-placeholder-label">SOL.4CE Café — Image 3</div>
+                <div class="ps-placeholder-hint">Replace src with your photo</div>
+                <img class="ps-real-img" src="/Photos/SOL4CE/3.jpg" alt="SOL.4CE Meet & Greet" onerror="this.style.display='none'">
+              </div>
+            </div>
+          </div>
+          <button class="ps-btn ps-prev" onclick="slideMove('ss-01',-1)" aria-label="Previous">&#8592;</button>
+          <button class="ps-btn ps-next" onclick="slideMove('ss-01', 1)" aria-label="Next">&#8594;</button>
+          <div class="ps-dots" id="dots-ss-01">
+            <span class="ps-dot active" onclick="slideTo('ss-01',0)"></span>
+            <span class="ps-dot" onclick="slideTo('ss-01',1)"></span>
+            <span class="ps-dot" onclick="slideTo('ss-01',2)"></span>
+          </div>
+          <div class="ps-counter"><span id="cur-ss-01">1</span> / 3</div>
         </div>
-        <button class="ps-btn ps-prev" onclick="slideMove('ss-01',-1)" aria-label="Previous">&#8592;</button>
-        <button class="ps-btn ps-next" onclick="slideMove('ss-01',1)"  aria-label="Next">&#8594;</button>
-        <div class="ps-dots" id="dots-ss-01">
-          <span class="ps-dot active" onclick="slideTo('ss-01',0)"></span>
-          <span class="ps-dot" onclick="slideTo('ss-01',1)"></span>
-          <span class="ps-dot" onclick="slideTo('ss-01',2)"></span>
+        <div class="ps-info">
+          <div class="proj-num">01</div>
+          <div class="proj-tag">Brand Activation · Convention · 2024</div>
+          <div class="proj-name">AKA Virtual × Comifuro19 Collaboration Café</div>
+          <p class="proj-desc">Spearheaded a collaboration café activation at Indonesia's largest doujin convention. Coordinated event organizers, brand partners, vendors, and on-site production teams to deliver a fully branded fan experience. Managed promotional activities, scheduling, and partner communications throughout.</p>
         </div>
-        <div class="ps-counter"><span id="cur-ss-01">1</span> / 3</div>
       </div>
-      <div class="ps-info">
-        <div class="proj-num">01</div>
-        <div class="proj-tag">Brand Activation · Convention · 2024</div>
-        <div class="proj-name">AKA Virtual × Comifuro19 Collaboration Café</div>
-        <p class="proj-desc">Spearheaded a collaboration café activation at Indonesia's largest doujin convention. Coordinated event organizers, brand partners, vendors, and on-site production teams to deliver a fully branded fan experience. Managed promotional activities, scheduling, and partner communications throughout.</p>
-      </div>
+    <div class="proj-card reveal">
+      <div class="proj-num">02</div>
+      <div class="proj-tag">Brand Activation · Fan Café </div>
+      <div class="proj-name">SOL.4CE Café — AKA Virtual Fan Activations</div>
+      <p class="proj-desc">Supervice a series of fan activation events for SOL.4CE, AKA Virtual's VTuber group (Gingitsune Gehenna, Souta, Mikazuki Arion, Harris Caine). Produced a themed Pop Up Restaurant at Sakana Mega Kuningan (Jul 2024) featuring member-themed menus, merchandise, and 3D Meet & Greet sessions; coordinated Meet & Greet at Comifuro 19 (Nov 2024); and managed the SOL.4CE Thematic Café in collaboration with Thymeline Cafe, Kelapa Gading, Jakarta (Jun–Jul 2025) — handling vendor coordination, ticketing via Loket.com, and full on-site production.</p>
+    </div>
+    <div class="proj-card reveal">
+      <div class="proj-num">03</div>
+      <div class="proj-tag">Live Event · Community Production</div>
+      <div class="proj-name">Virtual Rap Battle Indonesia</div>
+      <p class="proj-desc">Founded and produced 3 annual editions of Indonesia's premier online rap competition — managing full event lifecycle from concept and talent coordination, secure sponsorship to live broadcast and post-event evaluation.</p>
     </div>
 
-    <!-- PROJECT 02 -->
     <div class="proj-card reveal">
-      <div class="ps-slideshow" data-slide="0" id="ss-02">
-        <div class="ps-track">
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#1a140a,#c4922a)"></div></div>
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#14100a,#9a7020)"></div></div>
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#100c08,#7a5018)"></div></div>
-        </div>
-        <button class="ps-btn ps-prev" onclick="slideMove('ss-02',-1)" aria-label="Previous">&#8592;</button>
-        <button class="ps-btn ps-next" onclick="slideMove('ss-02',1)"  aria-label="Next">&#8594;</button>
-        <div class="ps-dots" id="dots-ss-02">
-          <span class="ps-dot active" onclick="slideTo('ss-02',0)"></span>
-          <span class="ps-dot" onclick="slideTo('ss-02',1)"></span>
-          <span class="ps-dot" onclick="slideTo('ss-02',2)"></span>
-        </div>
-        <div class="ps-counter"><span id="cur-ss-02">1</span> / 3</div>
-      </div>
-      <div class="ps-info">
-        <div class="proj-num">02</div>
-        <div class="proj-tag">Brand Activation · Fan Café</div>
-        <div class="proj-name">SOL.4CE Café — AKA Virtual Fan Activations</div>
-        <p class="proj-desc">Supervised a series of fan activation events for SOL.4CE, AKA Virtual's VTuber group (Gingitsune Gehenna, Souta, Mikazuki Arion, Harris Caine). Produced a themed Pop Up Restaurant at Sakana Mega Kuningan (Jul 2024) featuring member-themed menus, merchandise, and 3D Meet &amp; Greet sessions; coordinated Meet &amp; Greet at Comifuro 19 (Nov 2024); and managed the SOL.4CE Thematic Café in collaboration with Thymeline Cafe, Kelapa Gading, Jakarta (Jun–Jul 2025).</p>
-      </div>
-    </div>
-
-    <!-- PROJECT 03 -->
-    <div class="proj-card reveal">
-      <div class="ps-slideshow" data-slide="0" id="ss-03">
-        <div class="ps-track">
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#0a1410,#2a7a3a)"></div></div>
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#081008,#1a5a28)"></div></div>
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#060e06,#104a1a)"></div></div>
-        </div>
-        <button class="ps-btn ps-prev" onclick="slideMove('ss-03',-1)" aria-label="Previous">&#8592;</button>
-        <button class="ps-btn ps-next" onclick="slideMove('ss-03',1)"  aria-label="Next">&#8594;</button>
-        <div class="ps-dots" id="dots-ss-03">
-          <span class="ps-dot active" onclick="slideTo('ss-03',0)"></span>
-          <span class="ps-dot" onclick="slideTo('ss-03',1)"></span>
-          <span class="ps-dot" onclick="slideTo('ss-03',2)"></span>
-        </div>
-        <div class="ps-counter"><span id="cur-ss-03">1</span> / 3</div>
-      </div>
-      <div class="ps-info">
-        <div class="proj-num">03</div>
-        <div class="proj-tag">Live Event · Community Production</div>
-        <div class="proj-name">Virtual Rap Battle Indonesia</div>
-        <p class="proj-desc">Founded and produced 3 annual editions of Indonesia's premier online rap competition — managing full event lifecycle from concept and talent coordination, securing sponsorship through to live broadcast and post-event evaluation. Achieved 2,531 peak concurrent viewers.</p>
-      </div>
-    </div>
-
-    <!-- PROJECT 04 -->
-    <div class="proj-card reveal">
-      <div class="ps-slideshow" data-slide="0" id="ss-04">
-        <div class="ps-track">
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#0e1020,#2a3a8a)"></div></div>
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#0a0c18,#1a2870)"></div></div>
-          <div class="ps-slide"><div class="ps-img-placeholder" style="background:linear-gradient(135deg,#080a14,#101a58)"></div></div>
-        </div>
-        <button class="ps-btn ps-prev" onclick="slideMove('ss-04',-1)" aria-label="Previous">&#8592;</button>
-        <button class="ps-btn ps-next" onclick="slideMove('ss-04',1)"  aria-label="Next">&#8594;</button>
-        <div class="ps-dots" id="dots-ss-04">
-          <span class="ps-dot active" onclick="slideTo('ss-04',0)"></span>
-          <span class="ps-dot" onclick="slideTo('ss-04',1)"></span>
-          <span class="ps-dot" onclick="slideTo('ss-04',2)"></span>
-        </div>
-        <div class="ps-counter"><span id="cur-ss-04">1</span> / 3</div>
-      </div>
-      <div class="ps-info">
-        <div class="proj-num">04</div>
-        <div class="proj-tag">Community · IP · Music Production</div>
-        <div class="proj-name">Virtual Singer &amp; Idol Group IP</div>
-        <p class="proj-desc">Developed brand identity, visual direction, and content strategy for independent digital entertainment IP projects — growing communities to 104K+ YouTube subscribers and 11K+ Spotify monthly listeners through consistent creative output and campaign execution.</p>
-      </div>
+      <div class="proj-num">04</div>
+      <div class="proj-tag">Community · IP · Music Production</div>
+      <div class="proj-name">Virtual Singer & Idol Group IP</div>
+      <p class="proj-desc">Developed brand identity, visual direction, and content strategy for independent digital entertainment IP projects — growing communities to 104K+ YouTube subscribers and 11K+ Spotify monthly listeners through consistent creative output and campaign execution.</p>
     </div>
 
   </div>
@@ -701,136 +661,17 @@ Experienced in managing large-scale fan activations, music production pipelines,
 </footer>
 
 <script>
-// ── Cursor ────────────────────────────────────────────────────────────────────
-const cur = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-let mx=0, my=0, rx=0, ry=0;
-document.addEventListener('mousemove', e => {
-  mx=e.clientX; my=e.clientY;
-  cur.style.left=mx+'px'; cur.style.top=my+'px';
-});
-(function tick(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(tick); })();
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function tick(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
 document.querySelectorAll('a,button,.exp-item,.proj-card,.exp-row').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ cur.style.width='16px'; cur.style.height='16px'; ring.style.width='52px'; ring.style.height='52px'; });
-  el.addEventListener('mouseleave',()=>{ cur.style.width='8px';  cur.style.height='8px';  ring.style.width='32px'; ring.style.height='32px'; });
+  el.addEventListener('mouseenter',()=>{cur.style.width='16px';cur.style.height='16px';ring.style.width='52px';ring.style.height='52px';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='8px';cur.style.height='8px';ring.style.width='32px';ring.style.height='32px';});
 });
-
-// ── Nav ───────────────────────────────────────────────────────────────────────
-window.addEventListener('scroll', () =>
-  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60)
-);
-
-// ── Scroll reveal ─────────────────────────────────────────────────────────────
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// ── Slideshow image config ────────────────────────────────────────────────────
-// Images are injected at RUNTIME by JS — RSBuild never sees the paths.
-// To add photos: put files in public/Photos/<folder>/ and add filenames below.
-// ─────────────────────────────────────────────────────────────────────────────
-var PHOTO_CONFIG = {
-  'ss-01': {
-    folder: '/Photos/CF',        // public/Photos/CF/
-    files:  ['1.jpg','2.jpg','3.jpg']
-    // add more: '4.jpg','5.jpg',...
-  },
-  'ss-02': {
-    folder: '/Photos/SOL4CE',    // public/Photos/SOL4CE/
-    files:  ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg']
-    // add more: '7.jpg',...
-  },
-  'ss-03': {
-    folder: '/Photos/VRB',       // public/Photos/VRB/
-    files:  ['1.jpg','2.jpg','3.jpg']
-    // add more: '4.jpg',...
-  },
-  'ss-04': {
-    folder: '/Photos/VirtualIP', // public/Photos/VirtualIP/
-    files:  ['1.jpg','2.jpg','3.jpg']
-    // add more: '4.jpg',...
-  }
-};
-
-// Inject images into each slideshow at runtime
-Object.keys(PHOTO_CONFIG).forEach(function(id) {
-  var cfg   = PHOTO_CONFIG[id];
-  var el    = document.getElementById(id);
-  if (!el) return;
-
-  var slides = el.querySelectorAll('.ps-slide');
-  var files  = cfg.files;
-
-  // Add/remove slides to match the number of files
-  // If HTML has fewer slides than files, clone the last one
-  while (slides.length < files.length) {
-    var last  = slides[slides.length - 1];
-    var clone = last.cloneNode(true);
-    last.parentNode.appendChild(clone);
-    slides = el.querySelectorAll('.ps-slide');
-  }
-
-  // Inject one img per slide via JS (never a static src= in HTML)
-  slides.forEach(function(slide, i) {
-    if (i >= files.length) {
-      slide.style.display = 'none'; // hide extra slides
-      return;
-    }
-    var ph  = slide.querySelector('.ps-img-placeholder');
-    if (!ph) return;
-    var img = document.createElement('img');
-    img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;';
-    img.alt = id + ' photo ' + (i + 1);
-    img.onerror = function() { this.style.display = 'none'; };
-    // Build src as array join — bundler cannot statically detect this as an asset
-    img.src = [cfg.folder, files[i]].join('/');
-    ph.appendChild(img);
-  });
-
-  // Re-sync dots and counter to actual slide count
-  var realCount = Math.min(slides.length, files.length);
-  var dotsEl    = document.getElementById('dots-' + id);
-  var counterEl = el.querySelector('.ps-counter');
-  if (dotsEl) {
-    dotsEl.innerHTML = '';
-    for (var d = 0; d < realCount; d++) {
-      var dot = document.createElement('span');
-      dot.className = 'ps-dot' + (d === 0 ? ' active' : '');
-      (function(idx){ dot.onclick = function(){ slideTo(id, idx); }; })(d);
-      dotsEl.appendChild(dot);
-    }
-  }
-  if (counterEl) counterEl.innerHTML = '<span id="cur-' + id + '">1</span> / ' + realCount;
-  el.dataset.total = realCount;
-});
-
-// ── Slideshow controls ────────────────────────────────────────────────────────
-function getSlide(id) { return parseInt(document.getElementById(id).dataset.slide) || 0; }
-
-function setSlide(id, idx) {
-  var el    = document.getElementById(id);
-  var total = parseInt(el.dataset.total) || el.querySelectorAll('.ps-slide:not([style*="display:none"])').length;
-  idx = ((idx % total) + total) % total;
-  el.dataset.slide = idx;
-  el.querySelector('.ps-track').style.transform = 'translateX(-' + (idx * 100) + '%)';
-  el.querySelectorAll('.ps-dot').forEach(function(d, i){ d.classList.toggle('active', i === idx); });
-  var counter = document.getElementById('cur-' + id);
-  if (counter) counter.textContent = idx + 1;
-}
-
-function slideMove(id, dir) { setSlide(id, getSlide(id) + dir); }
-function slideTo(id, idx)   { setSlide(id, idx); }
-
-// Auto-advance — pauses on hover, covers all slideshows automatically
-Object.keys(PHOTO_CONFIG).forEach(function(id) {
-  var timer = setInterval(function(){ slideMove(id, 1); }, 4000);
-  var el = document.getElementById(id);
-  if (el) {
-    el.addEventListener('mouseenter', function(){ clearInterval(timer); });
-    el.addEventListener('mouseleave', function(){ timer = setInterval(function(){ slideMove(id, 1); }, 4000); });
-  }
-});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
